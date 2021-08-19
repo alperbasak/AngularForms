@@ -7,16 +7,23 @@ import {NgForm} from '@angular/forms';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  @ViewChild('formElement') form: NgForm;
+  @ViewChild('formElement') signupForm: NgForm;
   defaultQuestion = 'pet';
   answer = '';
   genders = ['male', 'female'];
 
   suggestUserName() {
     const suggestedName = 'Superuser';
+    this.signupForm.form.patchValue(
+      {
+        userData: {
+          username: suggestedName
+        }
+      });
   }
 
   onSubmit() {
-    console.log(this.form);
+    console.log(this.signupForm);
+    this.signupForm.reset();
   }
 }
